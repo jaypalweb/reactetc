@@ -1,0 +1,50 @@
+<!-- apply styles(inline) dynamically -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	
+	</style>
+</head>
+<body>
+<p>
+<span>first no:</span>
+<input type="text" id="no1"></p>
+<p>
+<span>Second no:</span>
+<input type="text" id="no2"></p>
+<p>
+<input type="button" onclick="fnAdd()" value="Add">
+</p>
+<p>
+<span id="res"></span>
+</p>
+<script>
+function fnAdd(){
+	//get the reference
+	var fnoRef=document.getElementById('no1');
+	var snoRef=document.getElementById('no2');
+	var resRef=document.getElementById('res')
+	//get the values
+    var fno=Number(fnoRef.value);
+    var sno=Number(snoRef.value);
+    //caluculate sum
+    var sum=fno+sno;
+    //show the out to end user
+    resRef.innerHTML=sum;
+
+    if(sum > 100){
+    	resRef.style.color='green';
+    	resRef.style.fontSize="50px";
+    }else{
+    	resRef.style.color='red';
+    	resRef.style.fontSize="20px"
+    }
+
+}
+
+</script>
+</body>
+</html>

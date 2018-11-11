@@ -1,0 +1,51 @@
+<p>
+<span>user name</span>
+<input type="text" id="un">
+</p>
+<p>
+<span>Password</span>
+<input type="password" id="pwd">
+</p>
+<p>
+
+<input type="button" value="Login" onclick="fnLogin()">
+</p>
+
+<p>
+  <span id="res">
+  </span>
+</p>
+<script>
+function fnLogin(){
+
+    //get references
+    var unRef=document.getElementById('un');
+    var pwdRef=document.getElementById('pwd');
+    var resRef=document.getElementById('res');
+    //get values
+    var un=unRef.value;
+    var pwd=pwdRef.value;
+    
+    //prepare dataObj
+
+    var dataObj={
+        'uname':un,
+        'pwd':pwd,
+        'optId':1
+    }
+    //send Ajax request
+
+    var httpObj=new XMLHttpRequest();
+    var resRef=document.getElementById('res');
+    httpObj.onreadystatechange=function(){
+        if(httpObj.readyState == 4){
+             var sRes=httpObj.responseText;
+             resRef.innerHTML=sRes;
+        }
+    }
+
+httpObj.open('post','http://sms.visiontechnos.com/php/users.php',true);
+httpObj.send(JSON.stringify(dataObj));
+
+}
+</script>

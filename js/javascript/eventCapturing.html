@@ -1,0 +1,26 @@
+<style>
+div{
+	padding: 50px;
+	border: 1px solid red;
+}
+</style>
+
+<div id='div3'>
+   Div3
+   <div id="div2">
+      Div2
+      <div id='div1'>
+        Div1
+      </div>
+   </div>
+</div>
+<script>
+var aDiv=document.getElementsByTagName('div');
+for(var i=0;i<aDiv.length;i++){
+	var ele=aDiv[i];
+	ele.addEventListener('click',function(){
+         alert(this.getAttribute('id'));
+		},true);
+	}
+
+</script>

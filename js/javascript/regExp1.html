@@ -1,0 +1,37 @@
+<!-- match with Reg expressions -->
+
+<!--
+  syntax : /pattern/modifier
+  Modifiers:
+	  g:global match
+	  i:ignore case sensitive
+	  m:multiline
+
+  Pattern signs:
+  
+     + .... minimum 1 or more  matches
+     * .... minimum 0 or more matches
+     ? .... minimum 0 or 1 match
+
+-->
+<h3>var str="abc 123 def 4567 ghi 899 jklmn 101112";</h3>
+<input type="button" onclick="fnGetData()" value="Match Function">
+<script>
+
+function fnGetData(){
+
+ var str="abc 123 def 4567 ghi 899 jkl 101112";
+
+ alert(str.match('123')); //it gives the first exact match(123) 
+ alert(str.match(/\d/)); //it gives the first digit from the given input string
+ alert(str.match(/\d+/)); //it gives the first group of digits (because of +) from the given input string
+
+ alert(str.match(/\d+/g)); //it gives all group of digits (because of + and g(global match)) from the given input string
+
+ alert(str.match(/[a-z]+/g)); //it gives all group of chars (because of + and g(global match)) from the given input string
+
+  alert(str.match(/[a-z]{5}/g)); //it gives all group of chars (because of {5} and g(global match) from the given input string whose length is 5.
+
+}
+ 
+</script>

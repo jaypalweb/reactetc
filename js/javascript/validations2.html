@@ -1,0 +1,34 @@
+<!-- disabled button if not enter correct data-->
+
+<span>First No:</span><input type="text" id="tb1">
+<span>Second No:</span><input type="text" id="tb2" >
+<input type="button" id="subBtn"  value="submit" onclick="fnSubmit(event)">
+<script>
+ var tb1Ref=document.getElementById('tb1');
+ var tb2Ref=document.getElementById('tb2');
+ var btnRef=document.getElementById('subBtn');
+
+function fnSubmit(event){
+	var no1=tb1Ref.value;
+	var no2=tb2Ref.value;
+	if(no1==''){
+		alert('please enter first no');
+		return;
+	}
+	if(isNaN(Number(no1))){
+		alert('please enter numbers only ');
+		return;
+	}
+	if(no2==''){
+		alert('please enter sec no');
+		return;
+	}
+	if(isNaN(Number(no2))){
+		alert('please enter numbers only ');
+		return;
+	}
+	alert('valid data');
+
+}
+
+</script>

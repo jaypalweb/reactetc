@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="styles.css"></link>
+<script src="ajax.js"></script>
+<p>
+    <a class="red-color" href="login.html">Login</a><a href="users.html">Users</a><a href="maps.html">Maps</a>
+</p>
+<p>
+    <span>user name</span>
+    <input type="text" id="un">
+</p>
+<p>
+    <span>Password</span>
+    <input type="password" id="pwd">
+</p>
+<p>
+    <input type="button" value="Login" onclick="fnLogin()">
+</p>
+<p>
+    <span id="res">
+  </span>
+</p>
+
+<script>
+
+function getResponse(result) {
+    var resRef = document.getElementById('res');
+    resRef.innerHTML = result;
+}
+
+function fnLogin() {
+
+    //get references
+    var unRef = document.getElementById('un');
+    var pwdRef = document.getElementById('pwd');
+
+    //get values
+    var un = unRef.value;
+    var pwd = pwdRef.value;
+
+    //prepare dataObj
+
+    var dataObj = {
+        'uname': un,
+        'pwd': pwd,
+        'optId': 1
+    }
+    //send Ajax request
+    sendData('post', 'http://sms.visiontechnos.com/php/users.php', getResponse, dataObj);
+}
+
+</script>

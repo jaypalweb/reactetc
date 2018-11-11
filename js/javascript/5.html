@@ -1,0 +1,47 @@
+<!-- perform all arthmetic oparations and display in table format-->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	 
+	</style>
+</head>
+<body>
+<p>
+<span>first no:</span>
+<input type="text" id="no1"></p>
+<p>
+<span>Second no:</span>
+<input type="text" id="no2"></p>
+<p>
+<input type="button" onclick="fnArth()" value="Arth">
+</p>
+<p>
+<span id="res"></span>
+</p>
+<script>
+function fnArth(oparation){
+	//get the reference
+	var fnoRef=document.getElementById('no1');
+	var snoRef=document.getElementById('no2');
+	var resRef=document.getElementById('res')
+	//get the values
+    var fno=Number(fnoRef.value);
+    var sno=parseInt(snoRef.value);
+    //calculate result
+    var add=fno+sno;
+    var sub=fno-sno;
+    var mul=fno*sno;
+    var div=fno/sno;
+    var mod=fno%sno;
+    var resTable="<table border=1px><tr><td>Addition</td><td>"+add+"</td></tr><tr><td>Subtration</td><td>"+sub+"</td></tr><tr><td>Multiplicaton</td><td>"+mul+"</td></tr><tr><td>Divition</td><td>"+div+"</td></tr><tr><td>Mod</td><td>"+mod+"</td></tr></table>"
+    resRef.innerHTML=resTable;
+    
+
+}
+
+</script>
+</body>
+</html>

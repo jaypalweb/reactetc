@@ -1,0 +1,25 @@
+<!--toggle info on button click-->
+<style>
+.disp-none {
+    display: none;
+}
+</style>
+<div>
+    <input type="button" value="toggle" onclick="fnToggleInfo()">
+</div>
+<p class="disp-none">
+    We at Learning Tree believe in quality Learning & Skill Development solutions that have a direct & measurable impact on client’s key performance indicators. We offer a wide range training solutions to BFSI and Corporate sectors. Where training solutions are blend to the requirements of the client specific business needs. We specially design the training solutions and customized to the requirements of the target audience, where it improves and enhance the skills of the trainee.
+</p>
+<script>
+  function fnToggleInfo(){
+  	//get the referece
+  	var divRef=document.querySelector('p:last-of-type');
+  	var attrVal=divRef.getAttribute('class');
+  	if(attrVal=='disp-none'){
+  		divRef.classList.remove('disp-none');
+  	}else{
+  		divRef.classList.add('disp-none');
+  	}
+
+  }
+</script>

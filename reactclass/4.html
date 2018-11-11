@@ -1,0 +1,42 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<style>
+    .cr{
+        color:red
+    }
+    .cb{
+        color:blue
+    }
+</style>
+<div id="root"></div>
+
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super();
+            this.state={
+                'res':'',
+                'n1':React.createRef(),
+                'n2':React.createRef(),
+                'clr':''
+            }
+            this.fnAdd=this.fnAdd.bind(this);
+        }
+
+        fnAdd(){
+            debugger;
+            let sum=Number(this.state.n1.current.value) + Number(this.state.n2.current.value);
+          
+            this.setState({
+                'res':sum,
+            })
+        }
+        render(){
+            return <div>
+                        <input ref={this.state.n1}  /><input ref={this.state.n2} /><input type="button" onClick={this.fnAdd} value="add" /><span className={this.state.res > 100 ? "cr":"cb"}>{this.state.res}</span>
+                    </div>
+        }
+    }
+    ReactDOM.render(<App />,document.getElementById('root'));
+</script>

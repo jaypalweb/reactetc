@@ -1,0 +1,60 @@
+<style>
+#parent{
+	width: 600px;
+	height: 600px;
+	background: yellow;
+	border: 1px solid red;
+	position: relative;
+}
+#child1,#child2,#child3,#team{
+	width: 100px;
+	height: 100px;
+	background: red;
+	border: 1px solid yellow;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+}
+span{
+    color: white;
+    position: relative;
+    top: 33px;
+    left: 14px;
+    font-size: 20px;
+}
+
+</style>
+<div id="parent">
+<div id="team"><span>Team</span></div>
+<div id="child1"><span>Sachin</span></div>
+<div id="child2"><span>Dravid</span></div>
+<div id="child3"><span>Ganguly</span></div>
+</div>
+<script>
+ function fnMoveElements(){
+ 	var childRef1=document.getElementById('child1');
+ 	var childRef2=document.getElementById('child2');
+ 	var childRef3=document.getElementById('child3');
+
+ 	var i=0;
+
+ 	var interval1=setInterval(function(){
+ 	 i=i+1;
+ 	 if(i==500){
+ 	 	clearInterval(interval1);
+ 	 }
+ 	 childRef1.style.left=i+'px';
+
+ 	 childRef2.style.left=i+'px';
+ 	 childRef2.style.top=i+'px';
+
+ 	  childRef3.style.top=i+'px';
+
+ 	},10);
+
+ }
+ fnMoveElements();
+</script>
+
+
+

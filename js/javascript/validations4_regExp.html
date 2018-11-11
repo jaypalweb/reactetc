@@ -1,0 +1,43 @@
+<!-- disabled button if not enter correct data-->
+
+<span>Phone No</span><input type="text" id="tb1">
+<span>Email</span><input type="text" id="tb2" >
+<input type="button" id="subBtn"  value="submit" onclick="fnSubmit(event)">
+<script>
+ var tb1Ref=document.getElementById('tb1');
+ var tb2Ref=document.getElementById('tb2');
+ var btnRef=document.getElementById('subBtn');
+
+function fnSubmit(event){
+	var no1=tb1Ref.value;
+	var no2=tb2Ref.value;
+	if(no1==''){
+		alert('please enter first no');
+		return;
+	}
+	
+	if(no2==''){
+		alert('please enter sec no');
+		return;
+	}
+
+	var regExp_phno=/\d{10}/g; // reg expression to check phno no
+	var regExp_email=/[a-z]+@[a-z]+\.[a-z]+/; // reg expression to check email
+    // crete object or RegExp
+
+    var regPhone=new RegExp(regExp_phno);
+    var regEmail=new RegExp(regExp_email);
+    if(!regPhone.test(no1)){
+       alert('please enter 10 digits');
+       return;
+    }
+    if(!regEmail.test(no2)){
+    	alert('email format should be *****@*****.****');
+    	return;
+    }
+
+	alert('valid data');
+
+}
+
+</script>

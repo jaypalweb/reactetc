@@ -1,0 +1,22 @@
+
+<input type="button" onclick="fnGetObjDet()" value="getObjectInfo">
+
+<script>
+var obj={
+	'name':'sachin',
+	'runs':2000
+}
+document.write('Object is: '+JSON.stringify(obj));
+function fnGetObjDet(){
+	document.write('No of Properties:'+Object.keys(obj).length);
+	document.write('<br>');
+	document.write('is Runs property is there? '+obj.hasOwnProperty('runs'));
+	document.write('<br>');
+	document.write('Data from object');
+	document.write('<br>');
+	for(key in obj){
+		document.write(key +'....>'+obj[key]);
+	document.write('<br>');
+	}
+}
+</script>

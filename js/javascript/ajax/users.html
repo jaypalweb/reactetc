@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="styles.css"></link>
+<script src="ajax.js"></script>
+<p>
+    <a href="login.html">Login</a><a class="red-color" href="users.html">Users</a><a href="maps.html">Maps</a>
+</p>
+<p>
+    <input type="button" value="getData" onclick="fnGetData()">
+</p>
+<p>
+    <span id="res">
+  </span>
+</p>
+<script>
+function getResponse(result) {
+    var resRef = document.getElementById('res');
+    var aRes = JSON.parse(result);
+    var resultText = '<table border=1px>';
+    aRes.forEach(function(obj) {
+        resultText = resultText + '<tr><td>' + obj.id + '</td><td>' + obj.title + '</td></tr>'
+
+    });
+    resultText = resultText + '</table>';
+    resRef.innerHTML = resultText;
+};
+
+function fnGetData() {
+
+    var url = 'https://jsonplaceholder.typicode.com/posts';
+
+    sendData('get', url, getResponse);
+
+}
+</script>

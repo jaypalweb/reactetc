@@ -1,0 +1,53 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root"></div>
+<style>
+    .cr{
+        color:red
+    }
+    .cb{
+        color:blue
+    }
+  </style>
+<script type="text/babel">
+
+class App extends React.Component {
+     constructor(){
+         super();
+         this.state={
+             res:'',
+             n1:'',
+             n2:'',
+             c:'black'
+         }
+     this.fnAdd= this.fnAdd.bind(this);
+     }
+     fnChange(e){
+        debugger;
+        this.setState({
+          [e.target.id]:e.target.value
+        })
+     }
+     fnAdd(){
+         debugger;
+         let sum=Number(this.state.n1) + Number(this.state.n2)
+         this.setState({
+             'res':sum
+         })
+         if(sum > 100){
+            this.setState({
+             'c':'red'
+           }) 
+         }else{
+            this.setState({
+             'c':'blue'
+           }) 
+         }
+     }
+     render(){
+         return <React.Fragment><input id="n1" onChange={this.fnChange.bind(this)} type="text"/><input id="n2" onChange={this.fnChange.bind(this)} type="text"/><input onClick={this.fnAdd} type="button" value="add"/><span style={{'color':this.state.c}}>{this.state.res}</span><span className={this.state.res > 100 ? 'cr':'cb'}>{this.state.res}</span></React.Fragment>
+     }
+}
+    ReactDOM.render(<App />,document.getElementById('root'))
+</script>

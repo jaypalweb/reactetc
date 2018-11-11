@@ -1,0 +1,24 @@
+<!-- read the data form json array and print the data in console-->
+<script>
+  var arrPlayers=[
+     {
+     	'name':'sachin',
+     	'runs':2000
+     },{
+     	'name':'Dhoni',
+     	'runs':14000
+     },{
+     	'name':'Kohli',
+     	'runs':18000
+     },{
+     	'name':'UV',
+     	'runs':15000
+     }
+  ];
+  arrPlayers.forEach(function(obj,index){
+
+  	document.write(obj.name+'....>'+obj.runs);
+  	document.write('<br>')
+  	console.log(obj.name+'....>'+obj.runs);
+  })
+</script>

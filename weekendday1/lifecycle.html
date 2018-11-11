@@ -1,0 +1,48 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+
+class App extends React.Component {
+     constructor(){
+         super();
+         this.state={
+             'name':'sachin'
+         }
+         setTimeout(()=>{
+             this.setState({
+                 'name':'dhoni'
+             })
+         },5000)
+
+         setTimeout(()=>{
+             this.setState({
+                 'name':'kohli'
+             })
+         },10000)
+         console.log('const')
+     }
+     componentWillUpdate(){
+         console.log('will update');
+     }
+     componentDidUpdate(){
+         console.log('did update');
+     }
+     componentWillMount(){
+         console.log('will mount');
+     }
+     shouldComponentUpdate(){
+         console.log('should update');
+         return false;
+     }
+     render(){
+        console.log('render');
+         return <span>{this.state.name}</span>
+     }
+     componentDidMount(){
+        console.log('did mount');
+     }
+}
+    ReactDOM.render(<App />,document.getElementById('root'))
+</script>

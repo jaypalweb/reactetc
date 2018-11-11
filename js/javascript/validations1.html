@@ -1,0 +1,22 @@
+<!-- disabled button if not enter correct data-->
+
+<input type="text" id="tb1" onkeyup="fnValidate()">
+<input type="text" id="tb2" onkeyup="fnValidate()">
+<input type="button" id="subBtn" disabled value="submit" onclick="fnSubmit()">
+<script>
+ var tb1Ref=document.getElementById('tb1');
+ var tb2Ref=document.getElementById('tb2');
+ var btnRef=document.getElementById('subBtn');
+
+function fnSubmit(){
+alert('valid data');
+}
+function fnValidate(){
+   if(tb1Ref.value == '' || tb2Ref.value == '' ){
+   	btnRef.setAttribute('disabled','disabled');
+   }else{
+   	btnRef.removeAttribute('disabled');
+
+   }
+}
+</script>

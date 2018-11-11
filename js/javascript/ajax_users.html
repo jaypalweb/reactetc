@@ -1,0 +1,30 @@
+<p>
+<input type="button" value="getData" onclick="fnGetData()">
+</p>
+
+<p>
+  <span id="res">
+  </span>
+</p>
+<script>
+function fnGetData(){
+var httpObj=new XMLHttpRequest();
+var resRef=document.getElementById('res');
+httpObj.onreadystatechange=function(){
+    if(httpObj.readyState == 4){
+         var sRes=httpObj.responseText;
+         var  aRes=JSON.parse(sRes);
+         var result='<table border=1px>';
+         aRes.forEach(function (obj){
+         	result=result + '<tr><td>'+obj.id+'</td><td>'+obj.title+'</td></tr>'
+
+         })
+         result=result+'</table>';
+         resRef.innerHTML=result;
+    }
+}
+
+httpObj.open('get','https://jsonplaceholder.typicode.com/posts',true);
+httpObj.send();
+}
+</script>

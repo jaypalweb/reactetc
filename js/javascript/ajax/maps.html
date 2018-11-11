@@ -1,0 +1,39 @@
+<link rel="stylesheet" href="styles.css"></link>
+<script src="ajax.js"></script>
+<p>
+    <a href="login.html">Login</a><a href="users.html">Users</a><a class="red-color" href="maps.html">Maps</a>
+</p>
+<p>
+    <span>Location</span>
+    <input type="text" id="loc">
+</p>
+<input type="button" value="Get Location" onclick="fnGetLocation()">
+</p>
+<p>
+    <span id="res">
+  </span>
+</p>
+<script>
+function getResponse(result) {
+     var resRef = document.getElementById('res');
+    var oRes = JSON.parse(result);
+    if (oRes.results.length) {
+        var locObj = oRes.results[0].geometry.location
+        resRef.innerHTML = locObj.lat + ', ' + locObj.lng;
+    } else {
+        resRef.innerHTML = 'please check u r entered location';
+    }
+}
+
+function fnGetLocation() {
+    //get references
+    var locRef = document.getElementById('loc');
+   
+    //get values
+    var loc = locRef.value;
+
+    var url = 'http://maps.googleapis.com/maps/api/geocode/json?address=' + loc;
+
+    sendData('get', url, getResponse)
+}
+</script>

@@ -1,0 +1,48 @@
+<p>
+    <span>Location</span>
+    <input type="text" id="loc">
+</p>
+<input type="button" value="Get Location" onclick="fnGetLocation()">
+</p>
+<p>
+    <span id="res">
+  </span>
+</p>
+<script>
+function fnGetLocation() {
+
+    //get references
+    var locRef = document.getElementById('loc');
+    var resRef = document.getElementById('res');
+    //get values
+    var loc = locRef.value;
+
+
+    sendRequest(loc).then(function(res) {
+        var oRes = JSON.parse(res);
+        if (oRes.results.length) {
+            var locObj = oRes.results[0].geometry.location
+            resRef.innerHTML = locObj.lat + ', ' + locObj.lng;
+        } else {
+            resRef.innerHTML = 'please check u r entered location';
+        }
+    }, function(res) {
+        resRef.innerHTML = res;
+    });
+
+}
+
+function sendRequest(loc) {
+  return  new Promise(function(resolve, reject) {
+        var httpObj = new XMLHttpRequest();
+        httpObj.open('get', 'http://maps.googleapis.com/maps/api/geocode/json?address=' + loc, true);
+        httpObj.send();
+        httpObj.onload = function() {
+            resolve(httpObj.responseText);
+        };
+        httpObj.onerror = function() {
+            reject(httpObj.responseText);
+        }
+    })
+}
+</script>

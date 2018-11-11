@@ -1,0 +1,120 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root" ></div>
+<script type="text/babel">
+  class TC extends React.Component{
+      constructor(){
+          super();
+          debugger;
+        this.prepareTd=this.prepareTd.bind(this);
+      }
+    prepareTd(o){
+        debugger;
+       return  this.props.k.map(function(v,i){
+            return <td>{o[v]}</td>
+        })
+    }
+       render(){
+           const ctx=this;
+           return <div>
+                      <table border="1px">
+                          <tr>
+                            {
+                                this.props.h && this.props.h.map(function(v,i){
+                                    return <th>{v}</th>
+                                })
+                            }
+                          </tr>
+                          <tbody>
+                          {
+                            this.props.d && this.props.d.map(function(o,j){
+                                    return <tr>
+                                               {
+                                                ctx.props.k.map(function(v,i){
+                                                    return <td>{o[v]}</td>
+                                                })
+                                               }
+                                            </tr>
+                             })
+                          }
+                          </tbody>
+                      </table>
+                   </div>
+       }
+  }
+
+  class Heros extends React.Component{
+      constructor(){
+          super();
+      
+    this.state={
+               'd':[
+                    {
+                       "n" :"NTR",
+                       "nom":"28"
+                    },
+                    {
+                       "n" :"prbhas",
+                       "nom":"23"
+                    },
+                   
+                ],
+                'k':['n','nom'],
+                'h':['Hero','Movies']
+           }
+      }
+        render(){
+            return <div>
+                    <TC d={this.state.d} k={this.state.k} h={this.state.h} />
+                   </div>
+        }
+  }
+
+   class Players extends React.Component{
+       constructor(){
+           super();
+           this.state={
+               'd':[
+                    {
+                       "name" :"sachin",
+                       "loc":"Mumbai"
+                    },
+                    {
+                       "name" :"dhoni",
+                       "loc":"Ranchi"
+                    },
+                    {
+                       "name" :"Kohli",
+                       "loc":"Delhi"
+                    }
+                ],
+                'k':['name','loc'],
+                'h':['Player Name','Player Location']
+           }
+       }
+       render(){
+             return <TC d={this.state.d} k={this.state.k} h={this.state.h} />
+       }
+
+   }
+   class App extends React.Component {
+        render(){
+            return <div>
+                        <div>
+                           <Players />
+
+                        </div>
+
+                        <div>
+                           <Heros />
+                           
+                        </div>
+
+                    </div>
+        }
+   }
+
+ ReactDOM.render(<App />,document.getElementById('root'));
+
+</script>

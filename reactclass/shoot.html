@@ -1,0 +1,154 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<style>
+    .board{
+        height: 300px;
+        width:300px;
+        border:1px solid red;
+        position: relative;
+    }
+    .baloon{
+        border: 1px solid red;
+         border-radius: 50%;
+        position: absolute;
+    }
+    .baloon-active{
+        border:2px solid blue;
+    }
+    .arrow{
+        width: 50px;
+    border: 1px solid blue;
+    display: inline-block;
+    position: absolute;
+    }
+</style>
+<div id="root" ></div>
+<script type="text/babel">
+ class Arrow extends React.Component{
+     constructor(){
+         super();
+         this.state={
+             't':0,
+             'l':0,
+             'stylesObj':{},
+             'tarBal':null
+         }
+         window.addEventListener('keyup',(e)=>{
+            debugger;
+
+            if(e.keyCode == 38){
+                if(this.state.t != 0){
+                this.setState({
+                    't':this.state.t -5
+                })
+                }
+            }
+
+            if(e.keyCode == 40){
+                if(this.state.t != 300){
+                this.setState({
+                    't':this.state.t +5
+                })
+                }
+            }
+
+            if(e.keyCode == 13){
+                if(!this.state.tarBal){
+                    alert('please select target');
+                    return;
+                }
+                if(this.state.t > this.state.stylesObj.top && this.state.t < (Number(this.state.stylesObj.top)+ Number(this.state.stylesObj.height)) ){
+                   let targetLeft=this.state.stylesObj.left-50;
+                   let i=0;
+                   let interval= setInterval(()=>{
+                    ++i;
+                    this.setState({
+                        'l':i
+                    })
+
+                      if(i== targetLeft){
+                          clearInterval(interval);
+                          this.state.tarBal.style.display='none';
+                          this.setState({
+                              'l':0,
+                              't':0,
+                              'tarBal':null
+                          })
+                      }
+                   },10)
+                   
+                   
+                }else{
+                    let targetLeft=250; 
+                    let i=0;
+                    let interval= setInterval(()=>{
+                    i=i+1;
+                    this.setState({
+                        'l':i
+                    })
+
+                      if(i== targetLeft){
+                          clearInterval(interval);
+                      }
+                    });
+                }
+            }
+        });
+     }
+     componentWillReceiveProps(){
+         setTimeout(()=>{
+            debugger;
+            let tarBal=this.props.te;
+            let styles=tarBal.getAttribute('style');
+            let styesArr=styles.split(';');
+            styesArr.pop();
+            let stylesObj=styesArr.reduce((i,v)=>{
+                 let propArr=v.split(':');
+                 i[propArr[0].trim()]= propArr[1].trim().replace('px','');
+                 return i;
+            },{});
+            this.setState({
+                'stylesObj':stylesObj,
+                'tarBal':tarBal
+            })
+         },500);
+     }
+     render(){
+         return <div className="arrow" style={{top:this.state.t,left:this.state.l}}></div>
+     }
+ }
+ class Baloon extends React.Component{
+    fnBaloonClick(e){
+        let activeBal=document.querySelector('.baloon.baloon-active');
+        if(activeBal){
+        activeBal.classList.remove('baloon-active');
+        }
+        e.target.classList.add('baloon-active');
+        this.props.tb(e.target);
+    }
+     render(){
+         return <div onClick={this.fnBaloonClick.bind(this)} className="baloon" style={{width:this.props.w,height:this.props.w,left:this.props.l,top:this.props.t}}></div>
+     }
+ }
+ class Board extends React.Component{
+     constructor(){
+         super();
+         this.state={
+             
+         }
+         this.fnGetTargetBaloon=this.fnGetTargetBaloon.bind(this);
+     }
+     fnGetTargetBaloon(tarEle){
+         debugger;
+         this.setState({
+             'te':tarEle
+         })
+     }
+     render(){
+         return <div className="board"><Arrow te={this.state.te} /><Baloon tb={this.fnGetTargetBaloon} w="25" l="250" t="20" /><Baloon tb={this.fnGetTargetBaloon} w="50" l="150" t="50" /><Baloon tb={this.fnGetTargetBaloon} w="20" l="280" t="150"/><Baloon tb={this.fnGetTargetBaloon} w="40" l="100" t="200"/><Baloon tb={this.fnGetTargetBaloon} w="70" l="200" t="220" /></div>
+     }
+ }
+ ReactDOM.render(<Board />,document.getElementById('root'));
+
+</script>

@@ -1,0 +1,100 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<style>
+    .time-left{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 36px;
+    }
+</style>
+<div id="root"></div>
+
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super();
+            this.state={
+                'timeLeft':30,
+                'ansKey':{
+                    '1':'A',
+                    '2':'A',
+                    '3':'B'
+                },
+                'myAns':{
+
+                },
+                'isDone':false
+            }
+            this.interval=setInterval(()=>{
+                this.setState({
+                    'timeLeft':this.state.timeLeft-1
+                })
+                if(this.state.timeLeft==0){
+                    clearInterval(this.interval);
+                    this.fnSubmitTest();
+                }
+            },1000);
+            this.fnChange=this.fnChange.bind(this);
+        }
+        fnChange(e){
+            debugger;
+            this.setState({
+                'myAns':{
+                    ...this.state.myAns,
+                    [e.target.name]:e.target.value
+                }
+            })
+        }
+        fnSubmitTest(){
+            let marks=0;
+            for(let key in this.state.ansKey){
+                if(this.state.ansKey[key]== this.state.myAns[key]){
+                    marks++;
+                }
+            }
+            alert(marks);
+            clearInterval(this.interval)
+            this.setState({
+                'isDone':true
+            })
+        }
+        render(){
+            return <div>
+                     <p>
+                       <b>1.selector for first sibling?</b>
+                       <div><input name="1" onChange={this.fnChange} value="A" type="radio"/>&gt;</div> 
+                       <div><input name="1" onChange={this.fnChange}  value="B" type="radio"/> ~</div>
+                       <div><input name="1" onChange={this.fnChange} value="C" type="radio"/>+</div>
+                       <div><input name="1" onChange={this.fnChange} value="D" type="radio"/>None of above</div>
+                     </p>
+
+                     <p>
+                       <b>2.How to handle promise?</b>
+                       <div><input name="2" onChange={this.fnChange}  value="A" type="radio"/>then</div> 
+                       <div><input name="2" onChange={this.fnChange}  value="B"type="radio"/>inner fuction</div>
+                       <div><input name="2" onChange={this.fnChange}  value="C"type="radio"/>A and B</div>
+                       <div><input name="2" onChange={this.fnChange}  value="D"type="radio"/>None of above</div>
+                     </p>
+
+                     <p>
+                       <b>3.HTML stands for?</b>
+                       <div><input name="3" onChange={this.fnChange} value="A" type="radio"/>Hyertext</div> 
+                       <div><input name="3" onChange={this.fnChange}  value="B"type="radio"/>Hyertext Markup Language</div>
+                       <div><input name="3" onChange={this.fnChange}  value="C" type="radio"/> A and B</div>
+                       <div><input name="3" onChange={this.fnChange} value="D"type="radio"/>None of above</div>
+                     </p>
+                     <p>
+                     {
+
+                      !this.state.isDone && <input type='button' value="submit" onClick={this.fnSubmitTest.bind(this)} />
+                         
+                     }
+                     </p>
+                     <b className="time-left">{this.state.timeLeft}</b>
+                   </div>
+        }
+    }
+    ReactDOM.render(<App />,document.getElementById('root'));
+</script>

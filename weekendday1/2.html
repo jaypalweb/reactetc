@@ -1,0 +1,27 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+ 
+class App extends React.Component {
+     constructor(){
+         super();
+         this.state={
+             res:''
+         }
+     this.fnAdd= this.fnAdd.bind(this);
+     }
+     fnAdd(){
+         debugger;
+         let sum=Number(this.refs.n1.value) + Number(this.refs.n2.value)
+         this.setState({
+             'res':sum
+         })
+     }
+     render(){
+         return <React.Fragment><input ref="n1" type="text"/><input ref="n2" type="text"/><input onClick={this.fnAdd} type="button" value="add"/><span>{this.state.res}</span></React.Fragment>
+     }
+}
+    ReactDOM.render(<App />,document.getElementById('root'))
+</script>

@@ -1,0 +1,23 @@
+<html>
+   <head>
+   </head>
+   <body>
+      <input type="button" value="Navigations" onclick="fnNavigations()">
+      <script>
+        function fnNavigations(){
+        	var htmlRef=document.getElementsByTagName('html')[0];
+        	var headRef=document.getElementsByTagName('head')[0];
+        	var bodyRef=document.getElementsByTagName('body')[0];
+        	console.log(htmlRef.childNodes);
+        	console.log(headRef.parentNode);
+        	console.log(headRef.nextSibling);
+        	console.log(bodyRef.parentNode);
+        	console.log(bodyRef.previousSibling);
+        	console.log(htmlRef.firstChild);
+        	console.log(htmlRef.lastChild);
+
+        }
+      </script>
+   </body>
+
+</html>

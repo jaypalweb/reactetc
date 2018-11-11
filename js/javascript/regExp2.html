@@ -1,0 +1,40 @@
+<!-- match with Reg expressions -->
+
+<!--
+  syntax : /pattern/modifier
+  Modifiers:
+
+	  g:global
+	  i:ignore case sensitive
+	  m:multiline
+
+  Pattern signs:
+  
+     + .... minimum 1 or more  matches
+     * .... minimum 0 or more matches
+     ? .... minimum 0 or 1 match
+
+-->
+<h3>var str="abc 123 def 4567 ghi 899 jklmn 101112";</h3>
+<input type="button" onclick="fnGetData()" value="Replace Function">
+<script>
+
+function fnGetData(){
+
+ var str="abc 123 def 4567 ghi 899 jkl 101112";
+
+ alert(str.replace('123','*****')); //it replace only first exact match(123) with *****
+
+ alert(str.replace(/\d/,'******')); //it replace the first digit from the given input string with  *****
+
+ alert(str.replace(/\d+/,'******')); //it replace the first group of digits (because of +) from the given input string with *****
+
+ alert(str.replace(/\d+/g,'******')); //it replace all group of digits (because of + and g(global match)) from the given input string with *****
+
+ alert(str.replace(/[a-z]+/g,'******')); //it repalce all group of chars (because of + and g(gloabl match) ) from the given input string with *****
+
+  alert(str.replace(/[a-z]{5}/g,'******')); //it repalce all group of chars (because of {5} and g(gloabl match) ) from the given input string whose length is 5 with *****
+
+}
+ 
+</script>

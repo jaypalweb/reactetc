@@ -1,0 +1,20 @@
+<input type='button' value="Exception" onclick="fnExceptionHandling()">
+<script>
+function fnExceptionHandling(){
+	try{
+		alert('try block exeted always')
+		var name;
+
+		console.log(name.length);
+
+	}catch(e){
+		alert('catch : exception rised');
+		alert(e);
+
+	}
+	finally{
+		alert('finally block executed always');
+	}
+	alert('exception handling done..remaing stated executed with out interaption');
+}
+</script>

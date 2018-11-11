@@ -1,0 +1,57 @@
+<!-- All arthmetic oparations -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	 
+	</style>
+</head>
+<body>
+<p>
+<span>first no:</span>
+<input type="text" id="no1"></p>
+<p>
+<span>Second no:</span>
+<input type="text" id="no2"></p>
+<p>
+<input type="button" onclick="fnArth('A')" value="Add">
+<input type="button" onclick="fnArth('S')" value="Sub">
+<input type="button" onclick="fnArth('M')" value="Mul">
+<input type="button" onclick="fnArth('D')" value="Div">
+<input type="button" onclick="fnArth('Mod')" value="Mod">
+</p>
+<p>
+<span id="res"></span>
+</p>
+<script>
+function fnArth(oparation){
+	//get the reference
+	var fnoRef=document.getElementById('no1');
+	var snoRef=document.getElementById('no2');
+	var resRef=document.getElementById('res')
+	//get the values
+    var fno=Number(fnoRef.value);
+    var sno=parseInt(snoRef.value);
+    //calculate result
+    var result;
+    if(oparation=='A'){
+        result=fno+sno;
+    }else if(oparation=='S'){
+        result=fno-sno;
+    }else if(oparation=='M'){
+        result=fno*sno;
+    }else if(oparation=='D'){
+        result=fno/sno;
+    }else{
+        result=fno%sno;
+    }
+    resRef.innerHTML=result;
+    
+
+}
+
+</script>
+</body>
+</html>

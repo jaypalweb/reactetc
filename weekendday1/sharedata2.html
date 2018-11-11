@@ -1,0 +1,34 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root"></div>
+<script type="text/babel">
+    class C extends React.Component{
+        fnSendData(){
+            debugger;
+            this.props.f(this.refs.name.value)
+        }
+        render(){
+            return <div><input ref="name" /><input type="button" value='send data' onClick={this.fnSendData.bind(this)}/></div>
+        }
+    }
+    class P extends React.Component{
+        constructor(){
+            super();
+            this.state={
+                'name':''
+            }
+            this.fnGetData= this.fnGetData.bind(this);
+        }
+        fnGetData(data){
+            debugger;
+            this.setState({
+                'name':data
+            })
+        }
+        render(){
+            return <div><C f={this.fnGetData}  /><span>Parend : {this.state.name}</span></div>
+        }
+    }
+    ReactDOM.render(<P />,document.getElementById('root'))
+</script>

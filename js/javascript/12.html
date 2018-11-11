@@ -1,0 +1,16 @@
+<div>
+ <img src="1.jpg" alt="No image" width="250px" height="250px"></img>
+</div>
+<p>
+  <input type="button" value="first" onclick="fnSetImage(1)">
+  <input type="button" value="secon" onclick="fnSetImage(2)">
+  <input type="button" value="third" onclick="fnSetImage(3)">
+  <input type='button' value="fourth" onclick="fnSetImage(4)">
+</p>
+<script>
+  function fnSetImage(imgNo){
+  	//get the ref
+  	var imgRef=document.getElementsByTagName('img')[0];
+  	imgRef.setAttribute('src',imgNo+'.jpg');
+  }
+</script>

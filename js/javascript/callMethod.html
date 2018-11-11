@@ -1,0 +1,16 @@
+<input type="button" value="Invoid method using Call()" onclick="fnCall()">
+
+<script>
+function fnCall(){
+	var obj={
+		'n1':10,
+		'n2':20,
+		'sum':function(n3,n4){
+		  console.log(this.n1+this.n2+n3+n4);
+		}
+	}
+	console.log(obj.sum(30,40))//100
+	console.log(obj.sum.call({'n1':50,'n2':50},50,50));//200
+	
+}
+</script>

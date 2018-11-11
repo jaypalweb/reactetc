@@ -1,0 +1,64 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+
+<script type="text/babel">
+    class App extends React.Component{
+        constructor(){
+            super();
+            this.state={
+                'per':{
+                }
+            }
+           this.fnChange=this.fnChange.bind(this);
+
+        }
+        fnChange(e){
+            debugger;
+            this.setState({
+                'per':{
+                    ...this.state.per,
+                    [e.target.name]:e.target.type == 'checkbox' ? e.target.checked : e.target.value
+                }
+            })
+        }
+        fnSubmit(){
+           console.log(this.state.per);
+        }
+        render(){
+            return <React.Fragment> 
+              <p>
+                <input type="text" name="uid" onChange={this.fnChange}/>
+              </p>
+              <p>
+                <input type="password" name="pwd"  onChange={this.fnChange}/>
+              </p>
+              <p>
+                <input type="radio" name="g"  onChange={this.fnChange} value="M" /> Male<input  value="F" onChange={this.fnChange} type="radio" name="g" /> FeMale
+              </p>
+              <p>
+                <input type="checkbox" name="isHePass" onChange={this.fnChange} /> isHePass
+              </p>
+              <p>
+                <select onChange={this.fnChange} name="cou" >
+                  <option value="1">India</option>
+                  <option value="2">Pak</option>
+                  <option value="3">China</option>
+                </select>
+              </p>
+              <p>
+                <textarea name="add" onChange={this.fnChange} rows="4" ></textarea>
+              </p>
+              <p>
+                <input type="file" name="photo" onChange={this.fnChange} />
+              </p>
+              <p>
+                <input type="button" value="submit" onClick={this.fnSubmit.bind(this)} />
+              </p>
+            </React.Fragment>
+        }
+    }
+    ReactDOM.render(<App />,document.getElementById('root'));
+</script>

@@ -1,0 +1,58 @@
+<!-- apply styles(class) dynamically -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+	  .g-100{
+        color: green;
+        font-size: 50px;
+        font-weight: bold;
+        font-style: italic;
+      }
+      .l-100{
+        color: red;
+        font-size: 25px;
+        font-weight: bold;
+      }
+	</style>
+</head>
+<body>
+<p>
+<span>first no:</span>
+<input type="text" id="no1"></p>
+<p>
+<span>Second no:</span>
+<input type="text" id="no2"></p>
+<p>
+<input type="button" onclick="fnAdd()" value="Add">
+</p>
+<p>
+<span id="res"></span>
+</p>
+<script>
+function fnAdd(){
+	//get the reference
+	var fnoRef=document.getElementById('no1');
+	var snoRef=document.getElementById('no2');
+	var resRef=document.getElementById('res')
+	//get the values
+    var fno=Number(fnoRef.value);
+    var sno=Number(snoRef.value);
+    //caluculate sum
+    var sum=fno+sno;
+    //show the out to end user
+    resRef.innerHTML=sum;
+    resRef.removeAttribute('class');
+    if(sum > 100){
+    	resRef.classList.add('g-100');
+    }else{
+    	resRef.classList.add('l-100')
+    }
+
+}
+
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root" ></div>
+<style>
+    .box{
+        border: 1px solid red;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    text-align: center;
+    line-height: 25px;
+    }
+</style>
+<script type="text/babel">
+
+class Box extends React.Component{
+    constructor(){
+        super();
+        this.state={
+            'outArr':[[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
+        }
+    }
+    fnChange(e){
+        debugger;
+        let _val=e.target.innerText;
+        if(!_val){
+            return;
+        }
+        for(let i=0;i<this.state.outArr.length;i++){
+            let innerArr=this.state.outArr[i];
+            if(document.getElementById(innerArr[0]).innerText == _val && document.getElementById(innerArr[1]).innerText == _val && document.getElementById(innerArr[2]).innerText == _val){
+                alert('You won');
+                break;
+            }
+        }
+    }
+    render(){
+        return <div onKeyUp={this.fnChange.bind(this)} id={this.props.i} className="box" contentEditable="true"></div>
+    }
+}
+class Board extends React.Component{
+    render(){
+        return <div><div><Box i="1" /><Box i="2"/><Box i="3"/></div><div><Box i="4"/><Box i="5"/><Box i="6"/></div><div><Box i="7"/><Box i="8"/><Box i="9"/></div></div>
+    }
+}
+ReactDOM.render(<Board />,document.getElementById('root'));
+</script>

@@ -1,0 +1,21 @@
+<script>
+   function f1(){
+   	  alert('execute first');
+   }
+   function f2(){
+   	alert('execute this method after 10 sec');
+   }
+
+   f1();
+   //every timeout method return one positive no ie timeout id 
+  var timeoutId= setTimeout(function(){
+     f2();
+   },10000);
+
+  //Now u can clear the timeout using that timeout id
+
+  clearTimeout(timeoutId);
+
+  // so what ever the code we have in timeout method(like f2 method call) not excuted.
+
+</script>

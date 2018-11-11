@@ -1,0 +1,14 @@
+<!-- implement set Timeout -->
+<script>
+   function f1(){
+   	  alert('execute first');
+   }
+   function f2(){
+   	alert('execute this method after 10 sec');
+   }
+
+   f1();
+   setTimeout(function(){
+     f2();
+   },10000);
+</script>

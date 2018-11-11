@@ -1,0 +1,26 @@
+<input type="text" id="sal">
+<div>(to see the exception enter invalid date like chars or nagitive values')</div>
+<input type='button' value="Submit" onclick="fnExceptionHandling()">
+<script>
+function fnExceptionHandling(){
+var salRef=document.getElementById('sal');
+var sal=salRef.value;
+	try{
+		alert('try block exeted always')
+		if(sal =='' || sal < 0 || isNaN(sal)){
+			throw('Salary should be postive numbers');
+		}
+		alert('U R entered salary was correct');
+		
+
+	}catch(e){
+		alert('catch : exception rised');
+		alert(e);
+
+	}
+	finally{
+		alert('finally block executed always');
+	}
+	alert('exception handling done..remaing stated executed with out interaption');
+}
+</script>

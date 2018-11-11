@@ -1,0 +1,56 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+<div id="root" ></div>
+<script type="text/babel">
+   
+   class App extends React.Component {
+        constructor(){
+            super();
+            this.state={
+                'data':[
+                    {
+                       "name" :"sachin",
+                       "loc":"Mumbai"
+                    },
+                    {
+                       "name" :"dhoni",
+                       "loc":"Ranchi"
+                    },
+                    {
+                       "name" :"Kohli",
+                       "loc":"Delhi"
+                    }
+                ]
+            }
+        }
+        render(){
+            return <div>
+                      <table border="1px">
+                         <tr>
+                            <th>Name</th>
+                            <th>Loc</th>
+                         </tr>
+                         {
+                             this.state.data.map(function(o,i){
+                                  return <tr>
+                                       <td>{o.name}</td>
+                                       <td>{o.loc}</td>
+                                    </tr>
+                             })
+                         }
+                      </table>
+                      <select>
+                         {
+                            this.state.data.map(function(o,i){
+                                  return <option value={o.loc}>{o.name}</option>
+                             }) 
+                         }
+                      </select>
+                   </div>
+        }
+   }
+
+ ReactDOM.render(<App />,document.getElementById('root'));
+
+</script>

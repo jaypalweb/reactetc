@@ -1,0 +1,24 @@
+<!-- repeat images for 5 sec-->
+<style>
+div:first-child{
+	text-align: center;
+}
+</style>
+<div>
+<img src="1.jpg" width="500px" height="200px">
+</div>
+<script>
+function setImages(){
+	var imgRef=document.querySelector('img:first-child');
+	var i=1;
+	setInterval(function(){
+		i=i+1;
+		if(i==5){
+			i=1;
+		}
+		imgRef.setAttribute('src',i+'.jpg');
+
+	},5000);
+}
+setImages();
+</script>

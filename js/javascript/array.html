@@ -1,0 +1,21 @@
+
+<input type="button" onclick="fnGetObjDet()" value="getArrayInfo">
+
+<script>
+var arr=['sachin','ganguly','dravid'];
+document.write('Object is: '+JSON.stringify(arr));
+function fnGetObjDet(){
+	document.write('No of Elements:'+arr.length);
+	document.write('<br>');
+	document.write('is "dravid" element is there  ? '+arr.includes('dravid')+'(includes method)');
+	document.write('<br>');
+	document.write('is "dravid" element is there  ? '+arr.indexOf('dravid')+'(indexof method)');
+	document.write('<br>');
+	document.write('Data from array');
+	document.write('<br>');
+	arr.forEach(function(e){
+		document.write(e);
+	    document.write('<br>');
+	});
+}
+</script>

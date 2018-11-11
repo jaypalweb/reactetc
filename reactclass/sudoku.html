@@ -1,0 +1,57 @@
+<script src="react.development.js"></script>
+<script src="react-dom.development.js"></script>
+<script src="babel.js"></script>
+
+<div id="root"></div>
+<style>
+	.box {
+		width: 25px;
+		line-height: 25px;
+		border: 1px solid red;
+		height: 25px;
+		display: inline-block;
+		text-align: center
+	}
+</style>
+
+<script type="text/babel">
+
+	class Box extends React.Component{
+		constructor(){
+			super();
+			this.state={
+				'outerArr':[[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9]]
+			}
+			this.fnChageVal=this.fnChageVal.bind(this);
+		}
+		fnChageVal(){
+			for(let i=0;i<this.state.outerArr.length;i++){
+				let innerArr=this.state.outerArr[i];
+				let sum=0;
+				for(let j=0;j<innerArr.length;j++){
+					sum=sum + Number(document.getElementById(innerArr[j]).innerText)
+				    if(isNaN(sum)){
+						break;
+					}
+				}
+				
+				if(sum != 6){
+					break;
+				}
+				if(i==5){
+					alert('you won')
+				}
+		}
+		}
+		render(){
+			return <div class="box" onKeyUp={this.fnChageVal} id={this.props.i} contentEditable="true">{this.props.i}</div>
+	    }
+    }
+	class App extends React.Component{
+	        
+			render(){
+				return <div><div><Box i="1" /><Box i="2" /><Box i="3" /></div><div><Box i="4" /><Box i="5" /><Box i="6" /></div><div><Box i="7" /><Box i="8" /><Box i="9" /></div></div>
+			}
+	}
+	ReactDOM.render(<App />,document.getElementById('root'));
+</script>

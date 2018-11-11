@@ -1,0 +1,22 @@
+<input type="button" id="btn1" value="1" onclick="b1fn()">
+<input type="button" id="btn2" value="1" onclick="b2fn()">
+
+
+<script>
+   function f1(){
+     var i=1;
+     return function(){
+     	i=i+1;
+     	document.getElementById('btn1').setAttribute('value',i);
+     }
+   }
+   function f2(){
+   	  var i=1;
+   	  return function(){
+     	i=i+1;
+     	document.getElementById('btn2').setAttribute('value',i);
+      }
+   }
+   var b1fn=f1();
+   var b2fn=f2();
+</script>
